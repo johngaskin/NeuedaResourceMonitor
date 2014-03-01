@@ -7,6 +7,10 @@ import java.util.*;
 
 /**
  * Created by francis on 01/03/14.
+ *      Holds data for a User address
+ *      More than one user can live at an address so it's been linked as a OneToMany
+ *      All counties of Ireland have been hard-coded, this Address class cant hold information on people outside of Ireland
+ *      This may be a major issue
  */
 @Entity
 public class Address extends Model{

@@ -7,6 +7,10 @@ import java.util.*;
 
 /**
  * Created by francis on 01/03/14.
+ *      Holds data for Users, data input on a registration form and is used to generate a profile page
+ *      start should be a Date after todays date
+ *      end should be a Date after start
+ *      Maximum range between start and end should be limited to be 4months?
  */
 @Entity
 public class User extends Model{
@@ -17,7 +21,7 @@ public class User extends Model{
     public static String email;
 
     @Constraints.Required
-    public static String password;
+    public static String password;       //passwords currently stored in plain text - Need to work out how to secure them
 
     @Constraints.Required
     public static String confirmPassword;
@@ -52,12 +56,17 @@ public class User extends Model{
 
 
 
-    public static void saveOrUpdate(User usr){      //Creates a new user if the email doesn't already exist, else updates existing user
-        if (usr.email == null){
-            usr.save();
+    public static Finder<String, User> find(){
+        return new Finder(String.class, User.class);
+    }
+
+    public static void saveOrUpdate(User user){      //Creates a new user if the email doesn't already exist, else updates existing user
+        User temp = find().where().eq("email", user.email).findUnique();
+        if (temp == null){
+            user.save();
         }
         else{
-            usr.update();
+            user.update();
         }
     }
 }
