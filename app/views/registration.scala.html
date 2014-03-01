@@ -1,0 +1,46 @@
+@(userForm: Form[User])
+@import helper._
+@main("Registration form", List()){
+    @form(routes.Users.newUser()){
+        <div id="accountDetails">
+            @inputText(
+                field=userForm("email"),
+                args= '_label -> "Email", '_showConstraints -> false, '_placeHolder -> "example@domain.com"
+            )
+            @inputPassword(
+                field=userForm("password"),
+                args= '_label -> "Password", '_showConstraints -> false
+            )
+            @inputPassword(
+                field=userForm("password"),
+                args= '_label -> "Confirm Password", '_showConstraints -> false
+            )
+        </div>
+
+        <div id="contactDetails">
+            @inputText(
+                field=userForm("address.address"),
+                args= '_label -> "Email", '_showConstraints -> false
+            )
+            @inputText(
+                field=userForm("address.town"),
+                args= '_label-> "Town", '_showConstraints -> false
+            )
+            @select(
+                field=userForm("address.county"),
+                args= '_label -> "County", '_showConstraints -> false
+            )
+            @inputText(
+                field=userForm("address.postCode"),
+                args= '_label -> "Post Code", '_showConstraints -> false
+            )
+            @inputText(
+                field=userForm("phoneNo"),
+                args= '_label -> "Phone number", '_showConstraints -> false
+            )
+        </div>
+
+        <input type="submit" value="Submit">
+    }
+
+}
