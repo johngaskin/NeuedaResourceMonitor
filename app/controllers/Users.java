@@ -15,10 +15,6 @@ public class Users extends Controller {
 
     public static final Form<User> userForm = Form.form(User.class);
 
-    public static Result register(){
-        return ok(registration.render(userForm));
-    }
-
             //Receives completed form from registration.scala.html, if it hasErrors the form is returned
             //else a new user is created and saved to the database
     public static Result newUser(){
@@ -28,6 +24,15 @@ public class Users extends Controller {
         }
         User newUser = tempForm.get();
         User.saveOrUpdate(newUser);
-        return ok(routes.Application.index());
+        return redirect(routes.Application.index());
+    }
+
+    public static Map<String, String> countyOptions() {
+        LinkedHashMap<String, String> options = new LinkedHashMap<String, String>();
+
+        for (Address.County county : Address.County.values()) {
+            options.put (county.name(), county.text);
+        }
+        return options;
     }
 }

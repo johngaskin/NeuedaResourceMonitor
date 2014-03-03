@@ -1,7 +1,8 @@
 @(message: String)
+@import scala.collection.immutable._
 
-@main("Welcome to Play") {
+@main("Welcome to Play", List("index.js")) {
 
-    @play20.welcome(message, style = "Java")
+    @message
 
 }

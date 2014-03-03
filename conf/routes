@@ -6,7 +6,7 @@
 GET     /                           controllers.Application.index()
 
 # User profiles
-GET     /register                   controllers.Application.registration()
+GET     /register                   controllers.Application.register()
 POST    /register                   controllers.Users.newUser()
 
 # Map static resources from the /public folder to the /assets URL path

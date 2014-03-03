@@ -1,6 +1,8 @@
 @(userForm: Form[User])
 @import helper._
-@main("Registration form", List()){
+@import scala.collection.immutable._
+
+@main("Registration form", List("register.js")){
     @form(routes.Users.newUser()){
         <div id="accountDetails">
             @inputText(
@@ -26,10 +28,13 @@
                 field=userForm("address.town"),
                 args= '_label-> "Town", '_showConstraints -> false
             )
-            @select(
-                field=userForm("address.county"),
-                args= '_label -> "County", '_showConstraints -> false
-            )
+            @helper.input(field = userForm("address.county"), args = '_label -> "County", '_showConstraints -> false
+            ) { (id, name, value, args) =>
+                <select name="@name" id="@id" @toHtmlArgs(args)>
+                @for((key, value) <- Users.countyOptions){
+                    <option value="@key" selected="selected">@value</option>
+                }
+            }
             @inputText(
                 field=userForm("address.postCode"),
                 args= '_label -> "Post Code", '_showConstraints -> false
@@ -38,6 +43,10 @@
                 field=userForm("phoneNo"),
                 args= '_label -> "Phone number", '_showConstraints -> false
             )
+        </div>
+
+        <div id="skillDetails">
+
         </div>
 
         <input type="submit" value="Submit">

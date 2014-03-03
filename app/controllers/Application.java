@@ -2,7 +2,6 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
-
 import views.html.*;
 
 public class Application extends Controller {
@@ -11,8 +10,8 @@ public class Application extends Controller {
         return ok(index.render("Your new application is ready."));
     }
 
-    public static Result register() {
-        return redirect(routes.Users.register());
+    public static Result register(){
+        return ok(registration.render(Users.userForm));
     }
 
 }

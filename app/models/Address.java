@@ -23,6 +23,7 @@ public class Address extends Model{
     @Constraints.Required
     public static String town;
 
+    @Enumerated (EnumType.STRING)
     @Constraints.Required
     public static County county;
 
@@ -33,9 +34,19 @@ public class Address extends Model{
     @OneToMany(mappedBy="address")
     public static List<User> users;
 
+
     public enum County{     //list of all 32 counties in alphabetical order (not too sure about this one lel)
-        ANTRIM, ARMAGH, CARLOW, CAVAN, CLARE, CORK, DONEGAL, DOWN, DUBLIN, FERMANAGH, GALWAY, KERRY,
-        KILDARE, KILKENNY, LAOIS, LEITRIM, LIMERIK, LONDONDERRY, LONGFORD, LOUTH, MAYO, MEATH, MONAGHAN,
-        OFFALY, ROSCOMMON, SLIGO, TIPPERARY, TYRONE, WATERFORD, WESTMEATH, WEXFORD, WIKLOW;
+        ANTRIM("Antrim"), ARMAGH("Armagh"), CARLOW("Carlow"), CAVAN("Cavan"), CLARE("Clare"), CORK("Cork"), DONEGAL("Donegal"), DOWN("Down"),
+        DUBLIN("Dublin"), FERMANAGH("Fermanagh"), GALWAY("Galway"), KERRY("Kerry"),
+        KILDARE("Kildare"), KILKENNY("Kilkenny"), LAOIS("Laois"), LEITRIM("Leitrim"), LIMERIK("Limerik"), LONDONDERRY("Londonderry"),
+        LONGFORD("Longford"), LOUTH("Louth"), MAYO("Mayo"), MEATH("Meath"), MONAGHAN("Monaghan"),
+        OFFALY("Offaly"), ROSOMMON("Roscommon"), SLIGO("Sligo"), TIPPERARY("Tipperary"), TYRONE("Tyrone"), WATERFORD("Waterford"),
+        WESTMEATH("Westmeath"), WEXFORD("Wexford"), WIKLOW("Wiklow");
+
+        public final String text;
+
+        County (final String text) {
+            this.text = text;
+        }
     }
 }
